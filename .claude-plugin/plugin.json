@@ -1,0 +1,12 @@
+{
+  "name": "vercel-deploy",
+  "version": "1.0.0",
+  "description": "Vercel deployment helper for Claude Code - deploy projects to production and preview environments",
+  "author": "ryrhappy",
+  "license": "MIT",
+  "homepage": "https://github.com/ryrhappy/vercel-deploy-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryrhappy/vercel-deploy-skill.git"
+  }
+}
