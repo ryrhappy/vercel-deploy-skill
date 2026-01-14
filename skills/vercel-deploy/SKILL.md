@@ -18,12 +18,82 @@ This skill activates when you:
 - Ask about Vercel environment variables
 - Need help with Vercel project management
 
-## Prerequisites
+## IMPORTANT: Always Check Prerequisites First
 
-Before deploying, ensure you have:
-1. Vercel CLI installed: `npm install -g vercel`
-2. Logged in to Vercel: `vercel login`
-3. A Vercel project linked: `vercel link`
+Before attempting ANY deployment operation, you MUST:
+
+1. **Check if Vercel CLI is installed**
+   ```bash
+   which vercel
+   ```
+   If not found, install it:
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Check if user is logged in**
+   ```bash
+   vercel whoami
+   ```
+   If not logged in or shows error, guide user to login:
+   ```bash
+   vercel login
+   ```
+
+3. **Check if project is linked**
+   ```bash
+   ls -la .vercel 2>/dev/null
+   ```
+   If `.vercel` directory doesn't exist, link the project:
+   ```bash
+   vercel link
+   ```
+
+### Prerequisite Checklist Flow
+
+When a user requests deployment:
+
+```
+START → Check Vercel CLI installed?
+  ↓ NO → Install: npm install -g vercel → CONTINUE
+  ↓ YES
+Check logged in?
+  ↓ NO → Run: vercel login → CONTINUE
+  ↓ YES
+Check project linked?
+  ↓ NO → Run: vercel link → CONTINUE
+  ↓ YES
+PROCEED WITH DEPLOYMENT
+```
+
+### Example Prerequisite Checking Conversation
+
+**User**: "Deploy to Vercel"
+
+**You should**:
+1. First run: `which vercel`
+2. If missing, say: "Vercel CLI is not installed. Installing..." and run `npm install -g vercel`
+3. Then run: `vercel whoami`
+4. If not logged in, say: "Please login to Vercel..." and run `vercel login`
+5. Then check: `ls -la .vercel`
+6. If not linked, say: "Linking project..." and run `vercel link`
+7. Finally: "All set! Deploying..." and run `vercel --prod`
+
+### Automatic Error Detection
+
+If any command fails with:
+- `vercel: command not found` → Install CLI
+- `Error: Not logged in` → Run login
+- `Error: No project found` → Run link
+- `Permission denied` → Check login status
+
+## Prerequisites Summary
+
+| Requirement | Check Command | Fix Command |
+|-------------|---------------|-------------|
+| Vercel CLI | `which vercel` | `npm install -g vercel` |
+| Logged in | `vercel whoami` | `vercel login` |
+| Project linked | `ls .vercel` | `vercel link` |
 
 ## Deployment Commands
 
